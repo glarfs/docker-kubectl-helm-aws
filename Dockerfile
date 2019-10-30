@@ -8,7 +8,6 @@ FROM lachlanevenson/k8s-kubectl:v1.16.2
 # Ref: https://pkgs.alpinelinux.org/package/edge/testing/x86/aws-cli
 FROM python:3-alpine 
 ENV AWSCLI_VERSION 1.16.269
-RUN pip3 install --no-cache-dir --upgrade pip \
-    && pip3 --no-cache-dir install awscli==${AWSCLI_VERSION}
+RUN pip3 --no-cache-dir install awscli==${AWSCLI_VERSION}
 COPY --from=0 /usr/local/bin/helm /usr/local/bin/helm
 COPY --from=1 /usr/local/bin/kubectl /usr/local/bin/kubectl
